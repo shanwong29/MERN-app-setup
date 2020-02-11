@@ -1,0 +1,8 @@
+{
+  "presets": ["@babel/env", "@babel/react"],
+  "plugins": ["@babel/plugin-proposal-class-properties"]
+}
+
+// Babel doesn't do anything out-of-the-box, plugin is needed
+//configuration file for Babel, used to tell babel to use the plugin when doing the transpliation.
+// Babel presets bundles together common Babel plugins
