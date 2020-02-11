@@ -1,0 +1,16 @@
+{
+  "name": "mern-app-setup",
+  "version": "1.0.0",
+  "description": "a MERN setup for web development use",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "Shan Wong",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^5.1.0",
+    "express": "^4.17.1"
+  }
+}
