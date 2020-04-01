@@ -4,5 +4,5 @@
 }
 
 // Babel doesn't do anything out-of-the-box, plugin is needed
-//configuration file for Babel, used to tell babel to use the plugin when doing the transpliation.
-// Babel presets bundles together common Babel plugins
+// configuration file for Babel: for telling babel to use the plugin when doing the transpliation.
+// Babel presets bundles together common Babel plugins for transpiling ES6+ ==> a group of plugins

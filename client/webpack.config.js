@@ -11,14 +11,13 @@ module.exports = {
   },
   // index.js (including all the components) will be complied by webpack to one file in /dist ==> "index_bundle.js"
 
-  // webpack start a local host 3000, and serve index.html. look for ./src/index.js, and ask babel to translate it to bundle.js, and render on local host 3000 which serves our index.html
-
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        // telling webpack that we want bable to complie .js files
         exclude: /node_modules/,
+        // telling webpack that we want bable to complie .js/.jsx files
+        // A loader converts the file to a valid module.
         use: {
           loader: "babel-loader"
         }
@@ -30,6 +29,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/index.html"
     })
-    // without specifing template, html-webpack-plugin will create a default html
+    // without specifing template, html-webpack-plugin will create a default html template
   ]
 };
