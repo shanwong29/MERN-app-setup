@@ -1,20 +1,16 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import axios from "axios";
 
 export default class App extends Component {
   state = {
-    somedata: []
+    visitors: [],
   };
 
   componentDidMount() {
+    const apiUrl = `http://localhost:5000`;
     axios
-      .get("/api/somedata")
-      .then(res => console.log(res))
-      .then(result =>
-        this.setState({ somedata: result }, () => {
-          console.log(this.state.somedata);
-        })
-      );
+      .get(`${apiUrl}/api/toDoItems`)
+      .then((res) => console.log("rees", res));
   }
 
   render() {
