@@ -1,7 +1,14 @@
 const express = require("express");
 const app = express();
+require("dotenv").config();
 const cors = require("cors");
 const port = 5000;
+
+const mongoose = require("mongoose");
+
+mongoose.connect(
+  `mongodb+srv://shanwong:${process.env.MONGODB_altas_pwd}@cluster0-xzvwq.mongodb.net/test?retryWrites=true&w=majority`
+);
 
 // app.use(
 //   cors({
@@ -10,10 +17,10 @@ const port = 5000;
 //   })
 // );
 
-app.listen(port, () => console.log(`Server is listening on ${port}`));
-
 app.get("/api/somedata", (req, res) => {
   const someData = [{ id: 1, firstname: "John", lastname: "Doe" }];
 
   res.json(someData);
 });
+
+app.listen(port, () => console.log(`Server is listening on ${port}`));
