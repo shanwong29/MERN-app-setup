@@ -1,26 +1,28 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
-require("dotenv").config();
 const cors = require("cors");
 const port = 5000;
 
-const mongoose = require("mongoose");
+var bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect(
-  `mongodb+srv://shanwong:${process.env.MONGODB_altas_pwd}@cluster0-xzvwq.mongodb.net/test?retryWrites=true&w=majority`
+/*Access to XMLHttpRequest at 'http://localhost:5000/api/toDoItems' from origin 'http://localhost:9000' 
+has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. */
+app.use(
+  cors({
+    credentials: true,
+    origin: ["http://localhost:9000"], // <== the URL of our React app
+  })
 );
 
-// app.use(
-//   cors({
-//     credentials: true,
-//     origin: ["http://localhost:9000"] // <== this will be the URL of our React app (it will be running on port 3000)
-//   })
-// );
+const mongoose = require("mongoose");
+mongoose.connect(
+  `mongodb+srv://shanwong:${process.env.MONGODB_ATLAS_PWD}@cluster0-xzvwq.mongodb.net/test?retryWrites=true&w=majority`,
+  { useNewUrlParser: true, useUnifiedTopology: true }
+);
 
-app.get("/api/somedata", (req, res) => {
-  const someData = [{ id: 1, firstname: "John", lastname: "Doe" }];
-
-  res.json(someData);
-});
+const toDoItemsRoutes = require("./router/toDoItem");
+app.use("/api", toDoItemsRoutes);
 
 app.listen(port, () => console.log(`Server is listening on ${port}`));
