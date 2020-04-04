@@ -4,12 +4,12 @@ const ToDoItems = require("../models/ToDoItem");
 
 router.post("/toDoItems", async (req, res, next) => {
   try {
-    const newToDoItem = await ToDoItems.create({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      message: req.body.message,
+    await ToDoItems.create({
+      toDo: req.body.toDo,
     });
-    res.json(newToDoItem);
+
+    const allToDoItem = await ToDoItems.find({});
+    res.json(allToDoItem);
   } catch (err) {
     res.json(err);
   }
@@ -17,10 +17,8 @@ router.post("/toDoItems", async (req, res, next) => {
 
 router.get("/toDoItems", async (req, res, next) => {
   try {
-    console.log("here");
-    const toDoItem = await ToDoItems.find({});
-    console.log("V", toDoItem);
-    res.json(toDoItem);
+    const allToDoItem = await ToDoItems.find({});
+    res.json(allToDoItem);
   } catch (err) {
     res.json(err);
   }

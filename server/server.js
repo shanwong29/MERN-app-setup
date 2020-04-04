@@ -5,7 +5,8 @@ const cors = require("cors");
 const port = 5000;
 
 var bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 /*Access to XMLHttpRequest at 'http://localhost:5000/api/toDoItems' from origin 'http://localhost:9000' 
 has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. */
