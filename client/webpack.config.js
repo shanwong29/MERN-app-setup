@@ -7,7 +7,7 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     path: path.join(__dirname, "/dist"),
-    filename: "index_bundle.js"
+    filename: "index_bundle.js",
   },
   // index.js (including all the components) will be complied by webpack to one file in /dist ==> "index_bundle.js"
 
@@ -18,21 +18,30 @@ module.exports = {
         exclude: /node_modules/,
         // telling webpack that we want bable to complie .js/.jsx files
         // A loader converts the file to a valid module.
-        use: {
-          loader: "babel-loader"
-        }
-      }
-    ]
+        use: "babel-loader",
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+      },
+    ],
+  },
+
+  /*By default webpack automatically resolve js files. 
+    But it doesn't resolve jsx files by default. 
+    To be able to do that you have to manually configure your webpack config:*/
+  resolve: {
+    extensions: [".js", ".jsx"],
   },
 
   devServer: {
-    port: 9000
+    port: 9000,
   },
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html"
-    })
+      template: "./src/index.html",
+    }),
     // without specifing template, html-webpack-plugin will create a default html template
-  ]
+  ],
 };
