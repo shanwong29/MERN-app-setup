@@ -19,6 +19,13 @@ export default class App extends Component {
     this.setState({ [name]: value });
   };
 
+  deleteItem = (id) => {
+    const apiUrl = `http://localhost:5000`;
+    axios.delete(`${apiUrl}/api/toDoItems`, { data: { id } }).then((res) => {
+      this.setState({ allTodo: res.data });
+    });
+  };
+
   addToDo = (e) => {
     e.preventDefault();
     const apiUrl = `http://localhost:5000`;
@@ -28,6 +35,7 @@ export default class App extends Component {
       .then((res) =>
         this.setState({
           allTodo: res.data,
+          newToDoItem: "",
         })
       );
   };
@@ -36,8 +44,13 @@ export default class App extends Component {
     return (
       <div>
         <h1>My MERN App</h1>
-        {[...this.state.allTodo].map((el, i) => {
-          return <p key={i}>{el.toDo}</p>;
+        {[...this.state.allTodo].map((el) => {
+          return (
+            <div key={el._id}>
+              <span>{el.toDo} </span>
+              <button onClick={() => this.deleteItem(el._id)}>&#10005;</button>
+            </div>
+          );
         })}
         <form onSubmit={this.addToDo}>
           <input
@@ -45,7 +58,7 @@ export default class App extends Component {
             id="newToDoItem"
             name="newToDoItem"
             onChange={this.handleChange}
-            value={this.state.newTodo}
+            value={this.state.newToDoItem}
           />
           <button>Add Todo</button>
         </form>

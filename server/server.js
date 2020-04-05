@@ -24,6 +24,6 @@ mongoose.connect(
 );
 
 const toDoItemsRoutes = require("./router/toDoItem");
-app.use("/api", toDoItemsRoutes);
+app.use("/api/toDoItems", toDoItemsRoutes);
 
 app.listen(port, () => console.log(`Server is listening on ${port}`));
