@@ -3,6 +3,9 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 // with html-webpack-plugin, it creates the html file in dist automatically,
 // we don't even need to create the dist file by ourselves
 
+/*Starting from the entry points, webpack recursively builds a dependency graph that 
+includes every module your application needs*/
+
 module.exports = {
   entry: "./src/index.js",
   output: {
@@ -17,7 +20,8 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         // telling webpack that we want bable to complie .js/.jsx files
-        // A loader converts the file to a valid module.
+        /* Out of the box, webpack only understands JavaScript and JSON files. 
+        Loaders allow webpack to process other types of files and convert them into valid modules that can be consumed by your application*/
         use: "babel-loader",
       },
       {
